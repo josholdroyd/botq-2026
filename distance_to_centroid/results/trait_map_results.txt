@@ -1,0 +1,84 @@
+== Drift vs future beta-adjusted returns ==
+           signal horizon      IC    IC_t  Q5_minus_Q1_pct  spread_t
+   gmm_all9-PC1-2      1w  0.0014  0.6649           0.0873    1.9780
+   gmm_all9-PC1-2      1m -0.0023 -1.1047          -0.0242   -0.3810
+   gmm_all9-PC1-2      3m -0.0036 -1.7943          -0.1033   -0.8862
+   gmm_all9-PC1-3      1w -0.0019 -0.8832           0.0602    1.4198
+   gmm_all9-PC1-3      1m -0.0038 -1.9159          -0.0627   -0.9590
+   gmm_all9-PC1-3      3m -0.0078 -3.6897          -0.2078   -1.7139
+gmm_stable6-PC1-2      1w  0.0017  0.7855           0.0747    1.6068
+gmm_stable6-PC1-2      1m  0.0023  1.1299           0.0891    1.3804
+gmm_stable6-PC1-2      3m  0.0024  1.0915           0.1278    0.9478
+gmm_stable6-PC1-3      1w  0.0022  1.0851           0.0747    1.6478
+gmm_stable6-PC1-3      1m  0.0007  0.3794           0.0243    0.4227
+gmm_stable6-PC1-3      3m  0.0007  0.2981           0.1270    0.9976
+   hdb_all9-PC1-2      1w  0.0007  0.3288           0.0308    0.6395
+   hdb_all9-PC1-2      1m  0.0007  0.3107          -0.0403   -0.5611
+   hdb_all9-PC1-2      3m  0.0004  0.1492          -0.0660   -0.4068
+== Subperiods, 1m IC ==
+  drift_gmm_all9-PC1-2       2001-2011 IC -0.0029 t -1.03
+  drift_gmm_all9-PC1-2       2012-2022 IC -0.0018 t -0.56
+  drift_gmm_stable6-PC1-2    2001-2011 IC +0.0025 t +0.93
+  drift_gmm_stable6-PC1-2    2012-2022 IC +0.0021 t +0.69
+== Fama-MacBeth, 1m (coef in %/month per 1 sd of signal) ==
+  all9-PC1-2       alone                      coef -0.010  t -0.46
+  all9-PC1-2       + momentum/reversal/vol    coef +0.011  t +0.52
+  all9-PC1-2       + trait levels & changes   coef -0.012  t -0.50
+  stable6-PC1-2    alone                      coef +0.027  t +1.15
+  stable6-PC1-2    + momentum/reversal/vol    coef +0.029  t +1.39
+  stable6-PC1-2    + trait levels & changes   coef +0.007  t +0.28
+== Positive control: trait levels and changes, 1m IC ==
+  lvl_beta         IC -0.0713 t -9.71
+  chg_beta         IC -0.0201 t -3.55
+  lvl_own_risk     IC -0.0590 t -8.33
+  chg_own_risk     IC -0.0114 t -3.80
+  lvl_lottery      IC -0.0548 t -9.39
+  chg_lottery      IC -0.0054 t -1.77
+  lvl_crash_day    IC +0.0534 t +9.52
+  chg_crash_day    IC +0.0010 t +0.33
+  lvl_illiquidity  IC -0.0020 t -0.58
+  chg_illiquidity  IC -0.0023 t -1.61
+  lvl_log_price    IC +0.0353 t +6.15
+  chg_log_price    IC -0.0029 t -0.46
+== Map diagnostics ==
+  trait stability, quarter to quarter (avg corr):
+    beta          +0.92
+    own_risk      +0.99
+    crash_asym    +0.03
+    lottery       +0.51
+    crash_day     +0.49
+    reaction_lag  +0.13
+    bounce        +0.12
+    illiquidity   +0.29
+    log_price     +0.96
+  all9-PC1-2      variance share PCs [35.2 17.2 13.7]  axis stability [0.89 0.34]  groups median 2 range 2-4
+  all9-PC1-3      variance share PCs [35.2 17.2 13.7]  axis stability [0.89 0.34 0.41]  groups median 3 range 2-6
+  stable6-PC1-2   variance share PCs [51.8 21.3  9.2]  axis stability [0.9  0.64]  groups median 3 range 2-5
+  stable6-PC1-3   variance share PCs [51.8 21.3  9.2]  axis stability [0.9  0.64 0.32]  groups median 3 range 2-12
+  HDBSCAN groups median 2.0
+  average loadings, all9-PC1-2:
+               PC1   PC2
+beta         -0.45 -0.05
+own_risk     -0.49  0.00
+crash_asym    0.01  0.12
+lottery      -0.45 -0.05
+crash_day     0.45  0.01
+reaction_lag -0.07  0.29
+bounce       -0.07  0.26
+illiquidity  -0.06  0.08
+log_price     0.34 -0.06
+  average loadings, stable6-PC1-2:
+              PC1   PC2
+beta        -0.45 -0.25
+own_risk    -0.50  0.03
+lottery     -0.46 -0.14
+crash_day    0.46  0.14
+illiquidity -0.07  0.79
+log_price    0.35 -0.50
+== Sector check, groups formed for 2019-12 (all-9 2D map: k=3, sizes [563, 796, 1200]) ==
+  tech      {2: 6, 1: 3, 0: 1}
+  energy    {2: 7, 1: 3}
+  banks     {2: 9}
+  utilities {2: 10}
+  health    {2: 10}
+  staples   {2: 10}
